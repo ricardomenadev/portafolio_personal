@@ -32,5 +32,3 @@ yarn-error.log*
 # Environment variables
 .env.local
 .env
-/frontend/.env.local
-/backend/.env
