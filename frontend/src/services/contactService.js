@@ -5,7 +5,7 @@ const contactService = {
     // Envía los datos del formulario de contacto al backend
     sendContact: async (contactData) => {
       try {
-        const response = await api.post('/contact', contactData);
+        const response = await api.post('/api/contact', contactData);
         return response.data;
       } catch (error) {
         console.error('Error en envío de contacto:', error);
