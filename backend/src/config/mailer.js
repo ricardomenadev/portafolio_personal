@@ -1,14 +1,12 @@
-
-import nodemailer from 'nodemailer';
+import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST,
-  port: process.env.EMAIL_PORT,
+  service: "gmail",
   secure: false,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
-  }
+  },
 });
 
 export const sendEmail = async ({ to, subject, html }) => {
@@ -17,10 +15,10 @@ export const sendEmail = async ({ to, subject, html }) => {
       from: process.env.EMAIL_USER,
       to,
       subject,
-      html
+      html,
     });
   } catch (error) {
-    console.error('Error sending email:', error);
-    throw new Error('Failed to send email');
+    console.error("Error sending email:", error);
+    throw new Error("Failed to send email");
   }
 };
