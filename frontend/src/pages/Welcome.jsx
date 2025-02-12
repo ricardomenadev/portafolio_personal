@@ -44,15 +44,12 @@ const Welcome = () => {
         initial="hidden"
         animate="visible"
       >
-
-        
-        <motion.div 
+        <motion.div
           variants={itemVariants}
           className="mb-8 w-24 h-24 mx-auto" // Ajusta el tamaño según necesites
         >
-          <img src="/favicon.svg" alt="Logo" className="w-full h-full" />
+          <img src="/logoani.svg" alt="Logo" className="w-full h-full" />
         </motion.div>
-
 
         <motion.div variants={itemVariants} className="mb-8">
           <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="grad2-animated" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1">
+        <animate attributeName="stop-color" 
+                 values="#3B82F6;#4B72F6;#3B82F6" 
+                 dur="3s" 
+                 repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1">
+        <animate attributeName="stop-color" 
+                 values="#8B5CF6;#9B4CF6;#8B5CF6" 
+                 dur="3s" 
+                 repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+  </defs>
+
+  <!-- Círculo base con aparición gradual -->
+  <circle cx="50" cy="50" r="45" fill="url(#grad2-animated)">
+    <animate attributeName="r" 
+             from="0" to="45" 
+             dur="1s" 
+             begin="0s" 
+             fill="freeze"/>
+  </circle>
+
+  <!-- Hexágono como un solo path para una animación fluida -->
+  <path d="M50,30 L67.3,40 L67.3,60 L50,70 L32.7,60 L32.7,40 Z" 
+        stroke="white" 
+        stroke-width="3" 
+        fill="none"
+        stroke-dasharray="240"
+        stroke-dashoffset="240">
+    <animate attributeName="stroke-dashoffset"
+             from="240"
+             to="0"
+             dur="1.5s"
+             begin="1s"
+             fill="freeze"
+             calcMode="linear"/>
+  </path>
+
+  <!-- Símbolos < > con aparición y movimiento -->
+  <path d="M40,40 L30,50 L40,60" 
+        stroke="white" 
+        stroke-width="3" 
+        fill="none" 
+        opacity="0">
+    <animate attributeName="opacity" 
+             from="0" to="1" 
+             dur="0.5s" 
+             begin="2.5s" 
+             fill="freeze"/>
+    <animateTransform attributeName="transform"
+                      type="translate"
+                      from="-10 0" to="0 0"
+                      dur="0.5s"
+                      begin="2.5s"
+                      fill="freeze"/>
+  </path>
+  
+  <path d="M60,40 L70,50 L60,60" 
+        stroke="white" 
+        stroke-width="3" 
+        fill="none" 
+        opacity="0">
+    <animate attributeName="opacity" 
+             from="0" to="1" 
+             dur="0.5s" 
+             begin="2.8s" 
+             fill="freeze"/>
+    <animateTransform attributeName="transform"
+                      type="translate"
+                      from="10 0" to="0 0"
+                      dur="0.5s"
+                      begin="2.8s"
+                      fill="freeze"/>
+  </path>
+</svg>

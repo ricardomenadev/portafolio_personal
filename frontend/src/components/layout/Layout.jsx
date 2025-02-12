@@ -26,7 +26,7 @@ const Layout = () => {
               className="font-bold text-xl text-gray-800 dark:text-white"
             >
               <img
-                src="/favicon.svg"
+                src="/logoani.svg"
                 alt="Ricardo Mena Logo"
                 className="w-10 h-10"
               />
