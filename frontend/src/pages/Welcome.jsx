@@ -1,7 +1,7 @@
 // pages/Welcome.jsx
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Github, Linkedin, FileDown } from "lucide-react";
 
 const Welcome = () => {
   const navigate = useNavigate();
@@ -26,6 +26,16 @@ const Welcome = () => {
     },
   };
 
+  const socialVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+    hover: { scale: 1.1, transition: { duration: 0.2 } },
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center text-white p-4">
       <motion.div
@@ -45,7 +55,7 @@ const Welcome = () => {
 
         <motion.div
           variants={itemVariants}
-          className="relative inline-block"
+          className="relative inline-block mb-8"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -56,6 +66,44 @@ const Welcome = () => {
             Ingresar
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
+        </motion.div>
+
+        <motion.div
+          variants={itemVariants}
+          className="flex justify-center items-center gap-6 mt-6"
+        >
+          <motion.a
+            href="https://github.com/ricardomenadev"
+            target="_blank"
+            rel="noopener noreferrer"
+            variants={socialVariants}
+            whileHover="hover"
+            className="text-gray-300 hover:text-blue-400 transition-colors duration-300"
+          >
+            <Github className="w-7 h-7" />
+          </motion.a>
+
+          <motion.a
+            href="https://www.linkedin.com/in/ricardo-alexandro-mena-956a92257/"
+            target="_blank"
+            rel="noopener noreferrer"
+            variants={socialVariants}
+            whileHover="hover"
+            className="text-gray-300 hover:text-blue-400 transition-colors duration-300"
+          >
+            <Linkedin className="w-7 h-7" />
+          </motion.a>
+
+          <motion.a
+            href="/CV.pdf"
+            download
+            variants={socialVariants}
+            whileHover="hover"
+            className="flex items-center gap-2 text-gray-300 hover:text-blue-400 transition-colors duration-300"
+          >
+            <FileDown className="w-7 h-7" />
+            <span className="text-sm">CV</span>
+          </motion.a>
         </motion.div>
       </motion.div>
 
