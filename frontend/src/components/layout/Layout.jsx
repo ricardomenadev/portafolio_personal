@@ -3,12 +3,12 @@ import { Outlet, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Github, Linkedin, Mail, MessageCircle } from "lucide-react";
 
-
 const Layout = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
   const navItems = [
+    { path: "/", label: "Welcome" },
     { path: "/home", label: "Inicio" },
     { path: "/projects", label: "Proyectos" },
     { path: "/about", label: "Sobre mí" },
@@ -22,10 +22,14 @@ const Layout = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h16">
             <NavLink
-              to="/home"
+              to="/"
               className="font-bold text-xl text-gray-800 dark:text-white"
             >
-              RM
+              <img
+                src="/favicon.svg"
+                alt="Ricardo Mena Logo"
+                className="w-10 h-10"
+              />
             </NavLink>
             {/* Navegacion de escritorio */}
             <div className="hidden md:flex items-center space-x-8">
@@ -132,7 +136,7 @@ const Layout = () => {
                 <Mail className="w-5 h-5" />
               </a>
               <a
-                href="https://wa.me/5493794739888" 
+                href="https://wa.me/5493794739888"
                 rel="noopener noreferrer"
                 className="text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors"
               >
