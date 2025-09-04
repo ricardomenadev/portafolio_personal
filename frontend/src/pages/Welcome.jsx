@@ -1,4 +1,4 @@
-// pages/Welcome.jsx
+// pages/Welcome.jsx - Opción 1: Partículas Flotantes
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Github, Linkedin, FileDown } from "lucide-react";
@@ -36,17 +36,106 @@ const Welcome = () => {
     hover: { scale: 1.1, transition: { duration: 0.2 } },
   };
 
+  // Configuración de partículas flotantes
+  const particles = Array.from({ length: 20 }, (_, i) => ({
+    id: i,
+    size: Math.random() * 6 + 2,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    duration: Math.random() * 20 + 10,
+    delay: Math.random() * 5,
+  }));
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center text-white p-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center text-white p-4 relative overflow-hidden">
+      
+      {/* Fondo con gradiente animado */}
       <motion.div
-        className="text-center"
+        className="absolute inset-0 opacity-30"
+        animate={{
+          background: [
+            "radial-gradient(circle at 20% 80%, #1e40af 0%, transparent 50%)",
+            "radial-gradient(circle at 80% 20%, #7c3aed 0%, transparent 50%)",
+            "radial-gradient(circle at 40% 40%, #3b82f6 0%, transparent 50%)",
+            "radial-gradient(circle at 20% 80%, #1e40af 0%, transparent 50%)",
+          ],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* Partículas flotantes */}
+      {particles.map((particle) => (
+        <motion.div
+          key={particle.id}
+          className="absolute rounded-full bg-gradient-to-r from-blue-400 to-purple-500 opacity-20"
+          style={{
+            width: particle.size,
+            height: particle.size,
+            left: `${particle.x}%`,
+            top: `${particle.y}%`,
+          }}
+          animate={{
+            y: [-20, -100, -20],
+            x: [-10, 10, -10],
+            opacity: [0, 0.6, 0],
+          }}
+          transition={{
+            duration: particle.duration,
+            repeat: Infinity,
+            delay: particle.delay,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+
+      {/* Ondas de energía */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 2 }}
+      >
+        <motion.div
+          className="absolute top-1/2 left-1/2 w-96 h-96 border border-blue-500/20 rounded-full -translate-x-1/2 -translate-y-1/2"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.1, 0.3],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute top-1/2 left-1/2 w-64 h-64 border border-purple-500/20 rounded-full -translate-x-1/2 -translate-y-1/2"
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.4, 0.1, 0.4],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
+        />
+      </motion.div>
+
+      {/* Contenido principal */}
+      <motion.div
+        className="text-center relative z-10"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         <motion.div
           variants={itemVariants}
-          className="mb-8 w-24 h-24 mx-auto" // Ajusta el tamaño según necesites
+          className="mb-8 w-24 h-24 mx-auto"
         >
           <img src="/logoani.svg" alt="Logo" className="w-full h-full" />
         </motion.div>
@@ -112,17 +201,6 @@ const Welcome = () => {
             <span className="text-sm">CV</span>
           </motion.a>
         </motion.div>
-      </motion.div>
-
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.5 }}
-        transition={{ duration: 2 }}
-      >
-        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-blue-500 rounded-full" />
-        <div className="absolute top-1/3 right-1/4 w-3 h-3 bg-purple-500 rounded-full" />
-        <div className="absolute bottom-1/4 left-1/3 w-2 h-2 bg-indigo-500 rounded-full" />
       </motion.div>
     </div>
   );
