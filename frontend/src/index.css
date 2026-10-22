@@ -2,10 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Tipografías de la marca (las mismas de los videos) */
+@font-face { font-family: "Orbitron"; src: url("/fonts/Orbitron.woff2") format("woff2"); font-weight: 400 900; font-display: swap; }
+@font-face { font-family: "Geist"; src: url("/fonts/Geist.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("/fonts/JetBrainsMono.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+
 /* Estilos globales personalizados */
 @layer base {
     body {
-      @apply bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white;
+      @apply bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white font-sans;
+    }
+    h1, h2, h3 {
+      @apply font-display tracking-tight;
     }
   }
 

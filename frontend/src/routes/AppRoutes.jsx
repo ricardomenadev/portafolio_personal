@@ -1,22 +1,37 @@
-import { Routes, Route } from 'react-router-dom';
+import { lazy, Suspense, useEffect } from 'react';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Welcome from '../pages/Welcome';
-import MainLayout from '../components/layout/Layout';
-import Home from '../pages/Home';
-import Projects from '../pages/Projects';
-import About from '../pages/About';
-import Contact from '../pages/Contact';
+
+// Cada página se descarga recién cuando se visita
+const Inicio = lazy(() => import('../pages/propuestas/P6Mezcla'));
+const Proyectos = lazy(() => import('../pages/propuestas/proyectos/R2Galeria'));
+const SobreMi = lazy(() => import('../pages/propuestas/SobreMiCodigo'));
+const Contacto = lazy(() => import('../pages/propuestas/Contacto'));
+
+// Al cambiar de página, arrancar desde arriba
+const ScrollArriba = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
 
 const AppRoutes = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Welcome />} />
-      <Route path="/" element={<MainLayout />}>
-        <Route path="home" element={<Home />} />
-        <Route path="about" element={<About />} />
-        <Route path="projects" element={<Projects />} />
-        <Route path="contact" element={<Contact />} />
-      </Route>
-    </Routes>
+    <>
+      <ScrollArriba />
+      <Suspense fallback={<div className="min-h-screen bg-[#040912]" />}>
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+          <Route path="/home" element={<Inicio />} />
+          <Route path="/projects" element={<Proyectos />} />
+          <Route path="/about" element={<SobreMi />} />
+          <Route path="/contact" element={<Contacto />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Suspense>
+    </>
   );
 };
 

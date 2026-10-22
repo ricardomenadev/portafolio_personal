@@ -10,7 +10,7 @@ const app = express();
 // Configuración básica de CORS
 app.use(
   cors({
-    origin: ["https://ricardoamena.com", "http://localhost:5173"], // Dominio frontend y desarrollo
+    origin: ["https://ricardoamena.com", "https://www.ricardoamena.com", "http://localhost:5173"], // Dominio frontend y desarrollo
     methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -29,8 +29,11 @@ app.use("/api/contact", contactRoutes);
 
 const PORT = process.env.PORT || 3001;
 
-app.listen(PORT, () => {
-  console.log(`Servidor escuchando el puerto ${PORT}`);
+// Solo escucha en local: en el servidor la única entrada pública es nginx
+const HOST = process.env.HOST || "127.0.0.1";
+
+app.listen(PORT, HOST, () => {
+  console.log(`Servidor escuchando en ${HOST}:${PORT}`);
   console.log(
     `CORS configurado para: ${
       process.env.FRONTEND_URL || "https://ricardoamena.com"

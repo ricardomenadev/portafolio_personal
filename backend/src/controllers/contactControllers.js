@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { sendEmail } from "../config/mailer.js";
-import { clientConfirmationTemplate } from "../utils/emailTemplates.js";
+import { clientConfirmationTemplate, escapar } from "../utils/emailTemplates.js";
 
 const prisma = new PrismaClient();
 
@@ -58,8 +58,8 @@ export const createContact = async (req, res) => {
         // Email de confirmación al cliente
         sendEmail({
           to: email,
-          subject: "Gracias por contactarme",
-          html: clientConfirmationTemplate(name),
+          subject: "Recibí tu mensaje · Ricardo Mena",
+          html: clientConfirmationTemplate({ name, message }),
         }),
         // Email de notificación al admin con más detalles
         sendEmail({
@@ -69,16 +69,16 @@ export const createContact = async (req, res) => {
             <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: 0 auto;">
               <h2 style="color: #333;">Un cliente dando vuelta - Nuevo mensaje de contacto</h2>
               <div style="background-color: #f5f5f5; padding: 15px; border-radius: 5px;">
-                <p><strong>Nombre:</strong> ${name}</p>
-                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Nombre:</strong> ${escapar(name)}</p>
+                <p><strong>Email:</strong> ${escapar(email)}</p>
                 ${
                   phone
-                    ? `<p><strong>Teléfono:</strong> ${countryCode} ${phone}</p>`
+                    ? `<p><strong>Teléfono:</strong> ${escapar(countryCode)} ${escapar(phone)}</p>`
                     : ""
                 }
                 <p><strong>Mensaje:</strong></p>
                 <div style="background-color: white; padding: 10px; border-radius: 3px;">
-                  ${message}
+                  ${escapar(message).replace(/\n/g, "<br>")}
                 </div>
                 <p style="margin-top: 15px; font-size: 0.9em; color: #666;">
                   ID de Contacto: ${contact.id}<br>
