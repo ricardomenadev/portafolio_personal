@@ -23,7 +23,7 @@ const ARCHIVOS = [
     { t: '  nombre: "Ricardo A. Mena",', k: "nombre" },
     { t: "  rol: ROL,", k: "rol", rol: true },
     { t: "  desde: 2022,", k: "desde" },
-    { t: '  base: "Corrientes, Argentina",', k: "base" },
+    { t: '  base: "Charata, Chaco, Argentina",', k: "base" },
     { t: "  disponible: DISP,", k: "disponible", disp: true },
     { t: "};" },
   ] },
@@ -94,7 +94,7 @@ const COMANDOS = {
   help: () => [AYUDA],
   ayuda: () => [AYUDA],
   whoami: () => ["visitante · pero podés ser el próximo cliente ;)"],
-  sobre: () => ["Ricardo A. Mena · Desarrollador Full Stack desde 2022 · Corrientes, Argentina.", "Construyo apps web y móviles, sistemas con datos e IA para empresas."],
+  sobre: () => ["Ricardo A. Mena · Desarrollador Full Stack desde 2022 · Charata, Chaco, Argentina.", "Construyo apps web y móviles, sistemas con datos e IA para empresas."],
   stack: () => Object.entries(STACK).map(([k, v]) => `${k.padEnd(9)} ${v.join(" · ")}`),
   trayectoria: () => HITOS.map(([a, t]) => `${a.padEnd(11)} ${t}`),
   contacto: () => ["email     ricardoamena@gmail.com", "whatsapp  +54 9 379 473-9888", "linkedin  /in/ricardo-alexandro-mena", "instagram @ricardoa_mena", "github    @ricardomenadev"],
@@ -275,7 +275,7 @@ const SobreMiCodigo = () => {
                   <p className="k-pv font-display font-black text-2xl md:text-3xl text-white" data-k="nombre">Ricardo A. Mena</p>
                   <p className="k-pv mt-1 font-display text-[#7cc4ff] text-lg" data-k="rol">Desarrollador {rolTxt}</p>
                   <p className="k-pv mt-3 text-sm text-[#c9d6e6]" data-k="desde">Programando profesionalmente desde 2022</p>
-                  <p className="k-pv text-sm text-[#c9d6e6]" data-k="base">Corrientes, Argentina</p>
+                  <p className="k-pv text-sm text-[#c9d6e6]" data-k="base">Charata, Chaco, Argentina</p>
                   <p className="k-pv mt-4 inline-flex items-center gap-2 px-3 py-1.5 font-mono text-xs border" data-k="disponible"
                     style={{ color: disp ? "#7cff9b" : "#ffb454", borderColor: disp ? "#7cff9b" : "#ffb454" }}>
                     <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: disp ? "#7cff9b" : "#ffb454" }} />
